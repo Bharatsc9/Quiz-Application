@@ -1,5 +1,3 @@
-// Step 1: Define Quiz Data
-
 const quizData = [
   {
     question: "What does HTML stand for?",
@@ -41,15 +39,13 @@ const quizData = [
   },
 ];
 
-//? Step 2: JavaScript Initialization
-
 const answersElem = document.querySelectorAll(".answer");
 console.log(answersElem);
 const [questionElem, option_1, option_2, option_3, option_4] =
   document.querySelectorAll(
     "#question, #option_1, #option_2, #option_3, #option_4"
   );
-// console.log(option_2);
+
 const submitBtn = document.getElementById("submit");
 
 let currentQuiz = 0;
@@ -59,16 +55,13 @@ const loadQuiz = () => {
   const { question, options } = quizData[currentQuiz];
 
   questionElem.innerText = `${currentQuiz + 1}: ${question}`;
-  //  To get all the options
+
   options.forEach((curOption, index) => {
-    // It is a dynamic way of accessing DOM elements.
     return (window[`option_${index + 1}`].innerText = curOption);
   });
 };
 
 loadQuiz();
-
-//? Step 4: Get Selected Answer Function on Button click
 
 const getSelected = () => {
   const answerElement = Array.from(answersElem);
@@ -83,12 +76,10 @@ submitBtn.addEventListener("click", () => {
   const selectedOptionIndex = getSelected();
   console.log(selectedOptionIndex);
 
-  //   let's check if the answer is correct or not
   if (selectedOptionIndex === quizData[currentQuiz].correct) {
     score = score + 1;
   }
 
-  //   lets increment the currentQuiz value to get the next array elem
   currentQuiz++;
 
   if (currentQuiz < quizData.length) {
